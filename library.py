@@ -74,10 +74,8 @@ def get_media(media_id):
         cursor.execute(f"SELECT * FROM Books WHERE media_id = {media["id"]}")
         book = cursor.fetchone()
         if book:
-            #return book | {"title": media["title"]}
             return book | media
         cursor.execute(f"SELECT * FROM Movies WHERE media_id = {media["id"]}")
-        #return cursor.fetchone() | {"title": media["title"]}
         return cursor.fetchone() | media
 
 @handy
@@ -89,7 +87,7 @@ def get_borrowed(media_id):
 @handy
 def checkout(user_id, media_id):
     if not in_collection(media_id):
-        return 
+        return "no media"
     if not get_user(user_id):
         return "no user"
     borrowed = get_borrowed_by_user(user_id)
