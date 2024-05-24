@@ -94,7 +94,7 @@ def users_menu():
         
         elif command == "select":
             user_id = input("[Users] User ID>").strip()
-            if not user_id.isdigit:
+            if not user_id.isdigit():
                 print("User ID must be an integer...")
                 continue
             user_id = int(user_id)
@@ -166,7 +166,7 @@ def collection_menu():
                 if not pub_year.isdigit() or not len(pub_year) == 4:
                     print("Year must be in YYYY format")
                     continue
-                if pub_year < "1901" or pub_year > "2155":
+                if int(pub_year) < 1901 or int(pub_year) > 2155:
                     print("Publication year must fall between 1901 and 2155....")
                     continue
                 library.add_book(title, author, pub_year)
@@ -184,7 +184,7 @@ def collection_menu():
                 if not rel_year.isdigit() or not len(rel_year) == 4:
                     print("Year must be in YYYY format")
                     continue
-                if rel_year < "1901" or rel_year > "2155":
+                if int(rel_year) < 1901 or int(rel_year) > 2155:
                     print("Release year must fall between 1901 and 2155....")
                     continue
                 library.add_movie(title, director, rel_year)
