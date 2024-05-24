@@ -6,18 +6,18 @@ def valid_email(email):
     return bool(re.match(r"^\w[\+\.\w-]*@([\w-]+\.)*\w+[\w-]*\.([a-z]{2,4}|\d+)$", email))
 
 def display_user(user):
-    print(f"--- User {user["id"]} ---")
+    print(f"--- User {user["user_id"]} ---")
     print(f"\tName: {user["name"]}")
     print(f"\tEmail: {user["email"]}")
 
 def display_media(media):
-    if "author" in media:
-        print(f"--- Book {media["id"]} ---")
+    if "book_id" in media:
+        print(f"--- Book {media["book_id"]} ---")
         print(f"\tTitle: {media["title"]}")
         print(f"\tAuthor: {media["author"]}")
         print(f"\tPublication Year: {media["pub_year"]}")
-    elif "director" in media:
-        print(f"--- Movie {media["id"]} ---")
+    elif "movie_id" in media:
+        print(f"--- Movie {media["movie_id"]} ---")
         print(f"\tTitle: {media["title"]}")
         print(f"\tDirector: {media["director"]}")
         print(f"\tRelease Year: {media["rel_year"]}")
@@ -166,6 +166,9 @@ def collection_menu():
                 if not pub_year.isdigit() or not len(pub_year) == 4:
                     print("Year must be in YYYY format")
                     continue
+                if pub_year < "1901" or pub_year > "2155":
+                    print("Publication year must fall between 1901 and 2155....")
+                    continue
                 library.add_book(title, author, pub_year)
                 print("Book added successfully!")
             elif medium == "movie":
@@ -180,6 +183,9 @@ def collection_menu():
                 rel_year = input("Enter release year: ")
                 if not rel_year.isdigit() or not len(rel_year) == 4:
                     print("Year must be in YYYY format")
+                    continue
+                if rel_year < "1901" or rel_year > "2155":
+                    print("Release year must fall between 1901 and 2155....")
                     continue
                 library.add_movie(title, director, rel_year)
                 print("Movie added successfully!")
