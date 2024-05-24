@@ -53,11 +53,11 @@ def get_media(media_id):
         media = cursor.fetchone()
         if not media:
             return None
-        cursor.execute(f"SELECT * FROM Books WHERE book_id = {media["media_id"]}")
+        cursor.execute(f"SELECT * FROM Books WHERE book_id = {media_id}")
         book = cursor.fetchone()
         if book:
             return book | media
-        cursor.execute(f"SELECT * FROM Movies WHERE movie_id = {media["media_id"]}")
+        cursor.execute(f"SELECT * FROM Movies WHERE movie_id = {media_id}")
         return cursor.fetchone() | media
 
 @handy
